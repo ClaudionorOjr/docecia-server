@@ -1,0 +1,40 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@semantic-release/changelog": "6.0.3",
+    "@semantic-release/git": "10.0.1",
+    "@types/node": "18.15.11",
+    "@typescript-eslint/eslint-plugin": "5.58.0",
+    "@typescript-eslint/parser": "5.58.0",
+    "commitizen": "4.3.0",
+    "cz-conventional-changelog": "3.3.0",
+    "eslint": "8.38.0",
+    "prisma": "4.12.0",
+    "semantic-release": "21.0.1",
+    "tsup": "6.7.0",
+    "tsx": "3.12.6",
+    "typescript": "5.0.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "@prisma/client": "4.12.0",
+    "dotenv": "16.0.3",
+    "fastify": "4.15.0",
+    "zod": "3.21.4"
+  }
+}
