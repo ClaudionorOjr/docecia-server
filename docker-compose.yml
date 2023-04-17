@@ -1,0 +1,12 @@
+version: '3'
+name: docecia-server
+
+services:
+  docecia-pg:
+    image: bitnami/postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=docecia
+      - POSTGRESQL_PASSWORD=docecia
+      - POSTGRESQL_DATABASE=doceciadb

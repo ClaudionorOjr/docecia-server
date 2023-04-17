@@ -24,6 +24,19 @@ exec < /dev/tty && node_modules/.bin/cz --hook || true
 ---
 
 <details>
+  <summary><a>Docker Compose</a></summary>
+  <blockquote>É necessário ter o docker já instalado na sua máquina.</blockquote>
+
+```sh
+# Criar o container com as configurações do arquivo `docker-compose.yml`
+$ docker compose up -D
+```
+
+</details>
+
+---
+
+<details>
   <summary><a>Dotenv</a></summary>
 
 ```sh
