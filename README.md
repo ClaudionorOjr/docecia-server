@@ -2,6 +2,22 @@
 
 ## ⚙️ Dependências
 
+---
+
+<details>
+  <summary><a>Bcryptjs</a></summary>
+
+```sh
+$ npm i bcryptjs
+
+# Instalação das tipagens
+$ npm i @types/bcryptjs -D
+```
+
+</details>
+
+---
+
 <details>
   <summary><a>Commitizen</a></summary>
 
@@ -25,7 +41,7 @@ exec < /dev/tty && node_modules/.bin/cz --hook || true
 
 <details>
   <summary><a>Docker Compose</a></summary>
-  <blockquote>É necessário ter o docker já instalado na sua máquina.</blockquote>
+<blockquote>É necessário ter o docker já instalado na sua máquina.</blockquote>
 
 ```sh
 # Criar o container com as configurações do arquivo `docker-compose.yml`
@@ -82,6 +98,9 @@ $ npm i @prisma/client
 
 # Inicializar o prisma
 $ npx prisma init
+
+# Gerar as migrations do banco de dados
+$ npx prisma migrate dev
 ```
 
 </details>
@@ -133,6 +152,48 @@ $ npm i typescript @types/node -D
 
 # Inicializando o TypeScript
 $ npx tsc --init
+```
+
+</details>
+
+---
+
+<details>
+  <summary><a>Vitest</a></summary>
+
+```sh
+$ npm i vitest -D
+
+# Plugin para que o vitest consiga entender os paths configurados no tsconfig
+$ npm i vite-tsconfig-paths -D
+
+# Interface para visualizar e executar os testes
+$ npm i @vitest/ui -D
+```
+
+Criar arquivo de configuração do Vitest (`vite.config.ts`):
+
+<blockquote>Adicionando o plugin nas configurações do Vitest</blockquote>
+
+```ts
+import { defineConfig } from "vitest/config";
+import tsconfigPaths from "vite-tsconfig-paths";
+
+export default defineConfig({
+  plugins: [tsconfigPaths()],
+});
+```
+
+Adicionar os scripts de testes ao `package.json`:
+
+```json
+"scripts": {
+  ...
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
+  },
 ```
 
 </details>
