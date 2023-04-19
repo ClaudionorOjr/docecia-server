@@ -5,7 +5,7 @@
 ---
 
 <details>
-  <summary><a>Bcryptjs</a></summary>
+  <summary><a>bcryptjs</a></summary>
 
 ```sh
 $ npm i bcryptjs
