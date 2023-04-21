@@ -16,12 +16,29 @@ enum Role {
 }
 
 model User {
-  id            String @id @default(uuid())
+  id            String   @id @default(uuid())
   name          String
   surname       String
-  email         String @unique
+  email         String   @unique
   password_hash String
-  role          Role   @default(MEMBER)
+  role          Role     @default(MEMBER)
+  phone         String
+  created_at    DateTime @default(now())
+
+  address Address[]
 
   @@map("users")
+}
+
+model Address {
+  id                 String  @id @default(uuid())
+  street             String
+  address_number     Decimal
+  city               String
+  address_complement String?
+
+  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id String
+
+  @@map("adresses")
 }

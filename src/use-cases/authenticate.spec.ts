@@ -1,10 +1,9 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { AuthenticateUseCase } from './authenticate';
-import { UsersRepository } from '@/repositories/users-repository';
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository';
 import { hash } from 'bcryptjs';
 
-let usersRepository: UsersRepository;
+let usersRepository: InMemoryUsersRepository;
 let sut: AuthenticateUseCase;
 
 describe('Authenticate Use Case', () => {
@@ -20,6 +19,7 @@ describe('Authenticate Use Case', () => {
       surname: 'Doe',
       email: 'johndoe@example.com',
       password_hash: await hash('123456', 6),
+      phone: '99999999999'
     });
 
     const {user} = await sut.execute({
@@ -48,6 +48,7 @@ describe('Authenticate Use Case', () => {
       surname: 'Doe',
       email: 'johndoe@example.com',
       password_hash: await hash('123456', 6),
+      phone: '99999999999'
     });
 
     await expect(() =>

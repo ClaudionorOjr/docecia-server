@@ -19,7 +19,8 @@ describe('Register Use Case', () => {
       name: 'John',
       surname: 'Doe',
       email: 'johndoe@example.com',
-      password: '123456'
+      password: '123456',
+      phone: '99999999999'
     });
 
     expect(user.id).toEqual(expect.any(String));
@@ -30,7 +31,8 @@ describe('Register Use Case', () => {
       name: 'John',
       surname: 'Doe',
       email: 'johndoe@example.com',
-      password: '123456'
+      password: '123456',
+      phone: '99999999999'
     });
 
     const isPasswordCorrectlyHashed = await compare('123456', user.password_hash);
@@ -47,7 +49,8 @@ describe('Register Use Case', () => {
       name:'John',
       surname: 'Doe',
       email,
-      password: '123456'
+      password: '123456',
+      phone: '99999999999'
     });
 
     await expect(() => {
@@ -55,7 +58,8 @@ describe('Register Use Case', () => {
         name:'John',
         surname: 'Doe',
         email,
-        password: '123456'
+        password: '123456',
+        phone: '99999999999'
       });
     }).rejects.toBeInstanceOf(Error);
 
