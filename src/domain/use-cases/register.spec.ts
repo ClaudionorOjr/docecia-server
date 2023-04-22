@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { RegisterUseCase } from './register';
-import { InMemoryCustomersRepository } from '@/domain/repositories/in-memory/in-memory-customers-repository';
+import { InMemoryCustomersRepository } from '@domain/repositories/in-memory/in-memory-customers-repository';
 import { compare } from 'bcryptjs';
 
 let customersRepository: InMemoryCustomersRepository;
@@ -14,7 +14,7 @@ describe('Register Use Case', () => {
   });
 
   it('should be able to register a customer', async () => {
-    const { customer } = await sut.execute({
+    await sut.execute({
       name: 'John',
       surname: 'Doe',
       email: 'johndoe@example.com',
@@ -22,11 +22,13 @@ describe('Register Use Case', () => {
       phone: '99999999999',
     });
 
-    expect(customer.id).toEqual(expect.any(String));
+    const customerId = customersRepository.customers[0].id;
+
+    expect(customerId).toEqual(expect.any(String));
   });
 
   it('should hash customer password upon registration', async () => {
-    const { customer } = await sut.execute({
+    await sut.execute({
       name: 'John',
       surname: 'Doe',
       email: 'johndoe@example.com',
@@ -34,9 +36,11 @@ describe('Register Use Case', () => {
       phone: '99999999999',
     });
 
+    const customerPasswordHash = customersRepository.customers[0].passwordHash;
+
     const isPasswordCorrectlyHashed = await compare(
       '123456',
-      customer.password_hash,
+      customerPasswordHash,
     );
 
     expect(isPasswordCorrectlyHashed).toBe(true);

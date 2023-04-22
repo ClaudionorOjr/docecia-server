@@ -41,7 +41,7 @@ exec < /dev/tty && node_modules/.bin/cz --hook || true
 
 <details>
   <summary><a>Docker Compose</a></summary>
-<blockquote>É necessário ter o docker já instalado na sua máquina.</blockquote>
+<blockquote>É necessário ter o docker pré-instalado na sua máquina.</blockquote>
 
 ```sh
 # Criar o container com as configurações do arquivo `docker-compose.yml`
@@ -64,14 +64,32 @@ $ npm i dotenv
 ---
 
 <details>
-  <summary><a>Eslint</a></summary>
+  <summary><a>ESlint</a></summary>
 
 ```sh
 $ npm i eslint -D
 
-# Configuração do Eslint
+# Instalando o plugin ESLint da Rocketseat para formatação do código
+$ npm i @rocketseat/eslint-config
+
+# Configuração do ESlint (opcional)
 $ npx eslint --init
+
 ```
+
+Adicionar ao `.eslintrc.json`:
+
+```json
+{
+  "extends": "@rocketseat/eslint-config/node",
+  "rules": {
+    "camelcase": "off",
+    "no-useless-constructor": "off"
+  }
+}
+```
+
+<blockquote>Alterar o arquivo `node.js` nas dependências do plugin em **node_modules** para aceitar ponto e vírgula ao final das linhas.</blockquote>
 
 </details>
 
@@ -122,28 +140,6 @@ $ npm i @semantic-release/git @semantic-release/changelog -D
 ---
 
 <details>
-  <summary><a>tsup</a></summary>
-
-```sh
-$ npm i tsup -D
-```
-
-</details>
-
----
-
-<details>
-  <summary><a>tsx</a></summary>
-
-```sh
-$ npm i tsx -D
-```
-
-</details>
-
----
-
-<details>
   <summary><a>TypeScript</a></summary>
 
 ```sh
@@ -152,6 +148,12 @@ $ npm i typescript @types/node -D
 
 # Inicializando o TypeScript
 $ npx tsc --init
+
+# Permite que o node execute código TypeScript
+$ npm i tsx -D
+
+# Realiza a conversão do código de TypeScrip para JavaScript (build)
+$ npm i tsup -D
 ```
 
 </details>
@@ -207,3 +209,5 @@ Adicionar os scripts de testes ao `package.json`:
   $ npm i zod
   ```
 </details>
+
+---

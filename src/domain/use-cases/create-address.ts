@@ -1,6 +1,6 @@
-import { Address } from '@/domain/entities/address';
-import { AddressesRepository } from '@/domain/repositories/addresses-repository';
-import { CustomersRepository } from '@/domain/repositories/customers-repository';
+import { Address } from '@domain/entities/address';
+import { AddressesRepository } from '@domain/repositories/addresses-repository';
+import { CustomersRepository } from '@domain/repositories/customers-repository';
 
 interface CreateAddressUseCaseRequest {
   customerId: string;

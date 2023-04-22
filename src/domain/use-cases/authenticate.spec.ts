@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { AuthenticateUseCase } from './authenticate';
-import { InMemoryCustomersRepository } from '@/domain/repositories/in-memory/in-memory-customers-repository';
+import { InMemoryCustomersRepository } from '@domain/repositories/in-memory/in-memory-customers-repository';
+import { Customer } from '@domain/entities/customer';
 import { hash } from 'bcryptjs';
-import { Customer } from '@/domain/entities/customer';
 
 let customersRepository: InMemoryCustomersRepository;
 let sut: AuthenticateUseCase;

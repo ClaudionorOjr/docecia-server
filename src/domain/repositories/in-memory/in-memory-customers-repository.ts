@@ -1,13 +1,11 @@
+import { Customer } from '@domain/entities/customer';
 import { CustomersRepository } from '../customers-repository';
-import { Customer } from '@/domain/entities/customer';
 
 export class InMemoryCustomersRepository implements CustomersRepository {
   public customers: Customer[] = [];
 
   async create(customer: Customer) {
     this.customers.push(customer);
-
-    return customer;
   }
 
   async findByEmail(email: string) {

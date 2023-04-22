@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { CreateAddressUseCase } from './create-address';
-import { InMemoryAddressesRepository } from '@/domain/repositories/in-memory/in-memory-adresses-repository';
-import { InMemoryCustomersRepository } from '@/domain/repositories/in-memory/in-memory-customers-repository';
+import { InMemoryCustomersRepository } from '@domain/repositories/in-memory/in-memory-customers-repository';
+import { InMemoryAddressesRepository } from '@domain/repositories/in-memory/in-memory-adresses-repository';
+import { Customer } from '@domain/entities/customer';
 import { hash } from 'bcryptjs';
-import { Customer } from '@/domain/entities/customer';
 
 let customersRepository: InMemoryCustomersRepository;
 let addressesRepository: InMemoryAddressesRepository;

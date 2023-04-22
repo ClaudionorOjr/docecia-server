@@ -1,5 +1,5 @@
-import { Entity } from '@/domain/entities/entity';
-import { Optional } from '@/types/optional';
+import { Optional } from 'src/types/optional';
+import { Entity } from './entity';
 
 interface CustomerProps {
   name: string;
@@ -8,7 +8,7 @@ interface CustomerProps {
   passwordHash: string;
   phone: string;
   createdAt: Date;
-  updatedAt?: Date;
+  updatedAt?: Date | null;
 }
 
 export class Customer extends Entity<CustomerProps> {
@@ -34,7 +34,7 @@ export class Customer extends Entity<CustomerProps> {
     return this.props.email;
   }
 
-  get password_hash() {
+  get passwordHash() {
     return this.props.passwordHash;
   }
 
@@ -47,6 +47,14 @@ export class Customer extends Entity<CustomerProps> {
     this.touch();
   }
 
+  get createdAt() {
+    return this.props.createdAt;
+  }
+
+  get updatedAt() {
+    return this.props.updatedAt;
+  }
+
   private touch() {
     this.props.updatedAt = new Date();
   }
@@ -55,7 +63,7 @@ export class Customer extends Entity<CustomerProps> {
     const customer = new Customer(
       {
         ...props,
-        createdAt: new Date(),
+        createdAt: props.createdAt ?? new Date(),
       },
       id,
     );

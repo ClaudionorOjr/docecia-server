@@ -1,5 +1,5 @@
-import { Customer } from '@/domain/entities/customer';
-import { CustomersRepository } from '@/domain/repositories/customers-repository';
+import { Customer } from '@domain/entities/customer';
+import { CustomersRepository } from '@domain/repositories/customers-repository';
 import { hash } from 'bcryptjs';
 
 interface RegisterUseCaseRequest {
@@ -10,9 +10,7 @@ interface RegisterUseCaseRequest {
   phone: string;
 }
 
-interface RegisterUseCaseResponse {
-  customer: Customer;
-}
+type RegisterUseCaseResponse = void;
 
 export class RegisterUseCase {
   constructor(private customersRepository: CustomersRepository) {}
@@ -41,7 +39,5 @@ export class RegisterUseCase {
     });
 
     await this.customersRepository.create(customer);
-
-    return { customer };
   }
 }
