@@ -140,6 +140,18 @@ $ npm i @semantic-release/git @semantic-release/changelog -D
 ---
 
 <details>
+  <summary><a>Supertest</a></summary>
+
+```sh
+# Realiza as chamadas HTTP dos testes para a aplicação sem a necessidade de colocar a aplicação no ar
+$ npm i supertest -D
+```
+
+</details>
+
+---
+
+<details>
   <summary><a>TypeScript</a></summary>
 
 ```sh
@@ -191,12 +203,14 @@ Adicionar os scripts de testes ao `package.json`:
 ```json
 "scripts": {
   ...
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui"
-  },
+  "test": "vitest run",
+  "test:watch": "vitest",
+  "test:coverage": "vitest run --coverage",
+  "test:ui": "vitest --ui"
+},
 ```
+
+Criação de um [Test Environment no Vitest.](#test-environment-no-vitest)
 
 </details>
 
@@ -211,3 +225,57 @@ Adicionar os scripts de testes ao `package.json`:
 </details>
 
 ---
+
+### Test Environment no Vitest
+
+- É necessário criar uma pasta com o nome `vitest-environment-[name]` e iniciar um projeto node dentro dela. Nesse caso à criei na pasta **prisma**.
+
+```sh
+# Criando um projeto node em `vitest-environment-prisma`
+$ npm init -y
+```
+
+- Alterações no `package.json` em **vitest-environment-prisma**:
+
+```json
+{
+  // Nome do arquivo de execução dentro de "vitest-environment-prisma"
+  "main": "prisma-test-environment.ts"
+}
+```
+
+> Criar o arquivo de execução. Neste caso é o arquivo `prisma-test-environment.ts`.
+
+- Adicionar ao **defineConfig**, após **plugins**, no arquivo `vite.config.ts`:
+
+```ts
+test: {
+  // O segundo elemento do array environmentMatchGlobs, deve ser exatament o nome ao final de vitest-environmemnt-[name]
+  // Nesse caso, vitest-environment-prisma
+  environmentMatchGlobs: [['src/infra/http/controllers/**', 'prisma']],
+}
+```
+
+- Necessário instalar o `npm-run-all` para rodar os scripts de teste e2e.
+
+```sh
+# Executar scripts, os convertendo para funcionar de acordo com o SO que esteja usando
+$ npm i npm-run-all -D
+```
+
+- Atualizar os scripts de teste para:
+
+```json
+"scripts": {
+  ...
+  "test:create-prisma-environment": "npm link ./prisma/vitest-environment-prisma",
+  "test:install-prisma-environment": "npm link vitest-environment-prisma",
+  "test": "vitest run --dir src/domain/use-cases",
+  "test:watch": "vitest --dir src/domain/use-cases",
+  "pretest:e2e": "run-s test:create-prisma-environment test:install-prisma-environment",
+  "test:e2e": "vitest run --dir src/infra/http",
+  "test:e2e:watch": "vitest --dir src/infra/http",
+  "test:coverage": "vitest run --coverage",
+  "test:ui": "vitest --ui"
+}
+```

@@ -1,7 +1,7 @@
 import { Customer } from '@domain/entities/customer';
 import { CustomersRepository } from '@domain/repositories/customers-repository';
 import { PrismaCustomerMapper } from '../mappers/prisma-customer-mapper';
-import { prisma } from 'src/lib/prisma';
+import { prisma } from '@infra/database/prisma/prisma';
 
 export class PrismaCustomersRepository implements CustomersRepository {
   async create(customer: Customer) {
