@@ -1,6 +1,9 @@
-import { app } from 'src/app';
-import { register } from './register';
+import { FastifyInstance } from 'fastify';
 
-export async function customerRoutes() {
+import { register } from './register';
+import { authenticate } from './authenticate';
+
+export async function customerRoutes(app: FastifyInstance) {
   app.post('/customers', register);
+  app.post('/sessions', authenticate);
 }

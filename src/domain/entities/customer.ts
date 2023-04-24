@@ -1,4 +1,4 @@
-import { Optional } from 'src/types/optional';
+import { Optional } from 'src/utils/optional';
 import { Entity } from './entity';
 
 interface CustomerProps {

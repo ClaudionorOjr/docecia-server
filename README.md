@@ -100,6 +100,9 @@ Adicionar ao `.eslintrc.json`:
 
 ```sh
 $ npm i fastify
+
+# Lib integrada ao fastify para a criação de Json Web Tokens
+$ npm i @fastify/jwt
 ```
 
 </details>

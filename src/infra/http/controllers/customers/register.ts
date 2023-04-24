@@ -1,6 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { PrismaCustomersRepository } from '@infra/database/prisma/repositories/prisma-customers-repository';
-import { RegisterUseCase } from '@domain/use-cases/register';
+import { makeRegisterUseCase } from '@domain/use-cases/factories/make-register-use-case';
 import { z } from 'zod';
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
@@ -17,8 +16,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
   );
 
   try {
-    const prismaCustomersRepository = new PrismaCustomersRepository();
-    const registerUseCase = new RegisterUseCase(prismaCustomersRepository);
+    const registerUseCase = makeRegisterUseCase();
 
     await registerUseCase.execute({
       name,
