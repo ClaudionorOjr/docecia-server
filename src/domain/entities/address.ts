@@ -5,7 +5,7 @@ interface AddressProps {
   street: string;
   addressNumber: number;
   city: string;
-  addressComplement?: string;
+  addressComplement?: string | null;
 }
 
 export class Address extends Entity<AddressProps> {

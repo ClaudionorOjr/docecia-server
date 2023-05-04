@@ -4,6 +4,7 @@ import { InMemoryCustomersRepository } from '@domain/repositories/in-memory/in-m
 import { InMemoryAddressesRepository } from '@domain/repositories/in-memory/in-memory-adresses-repository';
 import { Customer } from '@domain/entities/customer';
 import { hash } from 'bcryptjs';
+import { ResourceNotFoundError } from './errors/resource-not-found-error';
 
 let customersRepository: InMemoryCustomersRepository;
 let addressesRepository: InMemoryAddressesRepository;
@@ -16,7 +17,7 @@ describe('Create Address Use Case', () => {
     sut = new CreateAddressUseCase(addressesRepository, customersRepository);
   });
 
-  it('should be able to create a address', async () => {
+  it('should be able to create an address', async () => {
     const customer = Customer.create({
       name: 'John',
       surname: 'Doe',
@@ -37,7 +38,7 @@ describe('Create Address Use Case', () => {
     expect(address.id).toEqual(expect.any(String));
   });
 
-  it('should not be able to create a address for non-existent customer', async () => {
+  it('should not be able to create an address for non-existent customer', async () => {
     await expect(() =>
       sut.execute({
         city: 'Gotham',
@@ -45,7 +46,7 @@ describe('Create Address Use Case', () => {
         addressNumber: 123,
         customerId: 'customer-01',
       }),
-    ).rejects.toBeInstanceOf(Error);
+    ).rejects.toBeInstanceOf(ResourceNotFoundError);
   });
 
   it('should be able to create one or more address for same customer', async () => {
@@ -75,8 +76,11 @@ describe('Create Address Use Case', () => {
 
     expect(addressesRepository.addresses).toHaveLength(2);
     expect(addressesRepository.addresses).toEqual([
-      expect.objectContaining({ street: 'Charon' }),
-      expect.objectContaining({ street: 'Victoria Place' }),
+      expect.objectContaining({ street: 'Charon', customerId: customer.id }),
+      expect.objectContaining({
+        street: 'Victoria Place',
+        customerId: customer.id,
+      }),
     ]);
   });
 });

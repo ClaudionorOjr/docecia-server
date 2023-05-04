@@ -2,8 +2,6 @@
 
 ## ⚙️ Dependências
 
----
-
 <details>
   <summary><a>bcryptjs</a></summary>
 
@@ -64,7 +62,7 @@ $ npm i dotenv
 ---
 
 <details>
-  <summary><a>ESlint</a></summary>
+  <summary><a>ESLint</a></summary>
 
 ```sh
 $ npm i eslint -D
@@ -89,7 +87,7 @@ Adicionar ao `.eslintrc.json`:
 }
 ```
 
-<blockquote>Alterar o arquivo `node.js` nas dependências do plugin em **node_modules** para aceitar ponto e vírgula ao final das linhas.</blockquote>
+> Alterar o arquivo `node.js` nas dependências do plugin em **node_modules** para aceitar ponto e vírgula ao final das linhas.
 
 </details>
 
@@ -190,7 +188,7 @@ $ npm i @vitest/ui -D
 
 Criar arquivo de configuração do Vitest (`vite.config.ts`):
 
-<blockquote>Adicionando o plugin nas configurações do Vitest</blockquote>
+> Adicionando o plugin nas configurações do Vitest
 
 ```ts
 import { defineConfig } from "vitest/config";

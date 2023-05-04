@@ -1,6 +1,7 @@
 import { Customer } from '@domain/entities/customer';
 import { CustomersRepository } from '@domain/repositories/customers-repository';
 import { hash } from 'bcryptjs';
+import { UserAlreadyExistsError } from './errors/user-already-exists';
 
 interface RegisterUseCaseRequest {
   name: string;
@@ -27,7 +28,7 @@ export class RegisterUseCase {
     const userWithSameEmail = await this.customersRepository.findByEmail(email);
 
     if (userWithSameEmail) {
-      throw new Error('User already exists!');
+      throw new UserAlreadyExistsError();
     }
 
     const customer = Customer.create({

@@ -6,7 +6,5 @@ export class InMemoryAddressesRepository implements AddressesRepository {
 
   async create(address: Address) {
     this.addresses.push(address);
-
-    return address;
   }
 }

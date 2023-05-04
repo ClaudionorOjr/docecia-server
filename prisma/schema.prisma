@@ -20,5 +20,20 @@ model Customer {
   created_at    DateTime  @default(now())
   updated_at    DateTime?
 
+  address Address[]
+
   @@map("customers")
+}
+
+model Address {
+  id                 String  @id @default(uuid())
+  city               String
+  street             String
+  address_number     Decimal
+  address_complement String?
+
+  customer    Customer @relation(fields: [customer_id], references: [id], onDelete: Cascade)
+  customer_id String
+
+  @@map("addresses")
 }

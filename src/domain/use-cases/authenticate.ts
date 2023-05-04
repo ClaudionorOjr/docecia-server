@@ -1,6 +1,7 @@
 import { Customer } from '@domain/entities/customer';
 import { CustomersRepository } from '@domain/repositories/customers-repository';
 import { compare } from 'bcryptjs';
+import { InvalidCredentialsError } from './errors/invalid-credentials-error';
 
 interface AuthenticateUseCaseRequest {
   email: string;
@@ -21,13 +22,13 @@ export class AuthenticateUseCase {
     const customer = await this.customersRepository.findByEmail(email);
 
     if (!customer) {
-      throw new Error('Invalid credentials!');
+      throw new InvalidCredentialsError();
     }
 
     const doesPasswordMatches = await compare(password, customer.passwordHash);
 
     if (!doesPasswordMatches) {
-      throw new Error('Invalid credentilas!');
+      throw new InvalidCredentialsError();
     }
 
     return { customer };

@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { RegisterUseCase } from './register';
 import { InMemoryCustomersRepository } from '@domain/repositories/in-memory/in-memory-customers-repository';
 import { compare } from 'bcryptjs';
+import { UserAlreadyExistsError } from './errors/user-already-exists';
 
 let customersRepository: InMemoryCustomersRepository;
 // * Sytem Under Test
@@ -24,6 +25,7 @@ describe('Register Use Case', () => {
 
     const customerId = customersRepository.customers[0].id;
 
+    expect(customersRepository.customers).toHaveLength(1);
     expect(customerId).toEqual(expect.any(String));
   });
 
@@ -65,6 +67,6 @@ describe('Register Use Case', () => {
         password: '123456',
         phone: '99999999999',
       });
-    }).rejects.toBeInstanceOf(Error);
+    }).rejects.toBeInstanceOf(UserAlreadyExistsError);
   });
 });

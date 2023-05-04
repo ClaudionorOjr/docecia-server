@@ -1,6 +1,7 @@
 import { Address } from '@domain/entities/address';
 import { AddressesRepository } from '@domain/repositories/addresses-repository';
 import { CustomersRepository } from '@domain/repositories/customers-repository';
+import { ResourceNotFoundError } from './errors/resource-not-found-error';
 
 interface CreateAddressUseCaseRequest {
   customerId: string;
@@ -30,7 +31,7 @@ export class CreateAddressUseCase {
     const customer = await this.customersRepository.findById(customerId);
 
     if (!customer) {
-      throw new Error('Invalid user.');
+      throw new ResourceNotFoundError();
     }
 
     const address = Address.create({
