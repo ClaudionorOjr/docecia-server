@@ -29,4 +29,12 @@ export class InMemoryCustomersRepository implements CustomersRepository {
 
     return customer;
   }
+
+  async save(customer: Customer) {
+    const customerIndex = this.customers.findIndex(
+      (item) => item.id === customer.id,
+    );
+
+    this.customers[customerIndex] = customer;
+  }
 }

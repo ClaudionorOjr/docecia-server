@@ -3,6 +3,7 @@ import { AuthenticateUseCase } from './authenticate';
 import { InMemoryCustomersRepository } from '@domain/repositories/in-memory/in-memory-customers-repository';
 import { Customer } from '@domain/entities/customer';
 import { hash } from 'bcryptjs';
+import { makeCustomer } from 'src/utils/test/factories/makeCustomer';
 
 let customersRepository: InMemoryCustomersRepository;
 let sut: AuthenticateUseCase;
@@ -15,12 +16,9 @@ describe('Authenticate Use Case', () => {
 
   it('should be able to authenticate', async () => {
     await customersRepository.create(
-      Customer.create({
-        name: 'John',
-        surname: 'Doe',
+      await makeCustomer({
         email: 'johndoe@example.com',
         passwordHash: await hash('123456', 6),
-        phone: '99999999999',
       }),
     );
 

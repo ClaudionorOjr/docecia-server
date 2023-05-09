@@ -2,9 +2,8 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { CreateAddressUseCase } from './create-address';
 import { InMemoryCustomersRepository } from '@domain/repositories/in-memory/in-memory-customers-repository';
 import { InMemoryAddressesRepository } from '@domain/repositories/in-memory/in-memory-adresses-repository';
-import { Customer } from '@domain/entities/customer';
-import { hash } from 'bcryptjs';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';
+import { makeCustomer } from 'src/utils/test/factories/makeCustomer';
 
 let customersRepository: InMemoryCustomersRepository;
 let addressesRepository: InMemoryAddressesRepository;
@@ -18,13 +17,7 @@ describe('Create Address Use Case', () => {
   });
 
   it('should be able to create an address', async () => {
-    const customer = Customer.create({
-      name: 'John',
-      surname: 'Doe',
-      email: 'johndoe@example.com',
-      passwordHash: await hash('123456', 6),
-      phone: '99999999999',
-    });
+    const customer = await makeCustomer();
 
     await customersRepository.create(customer);
 
@@ -50,13 +43,7 @@ describe('Create Address Use Case', () => {
   });
 
   it('should be able to create one or more address for same customer', async () => {
-    const customer = Customer.create({
-      name: 'John',
-      surname: 'Doe',
-      email: 'johndoe@example.com',
-      passwordHash: await hash('123456', 6),
-      phone: '99999999999',
-    });
+    const customer = await makeCustomer();
 
     await customersRepository.create(customer);
 

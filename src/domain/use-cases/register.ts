@@ -11,7 +11,7 @@ interface RegisterUseCaseRequest {
   phone: string;
 }
 
-type RegisterUseCaseResponse = void;
+interface RegisterUseCaseResponse {}
 
 export class RegisterUseCase {
   constructor(private customersRepository: CustomersRepository) {}
@@ -40,5 +40,7 @@ export class RegisterUseCase {
     });
 
     await this.customersRepository.create(customer);
+
+    return {};
   }
 }

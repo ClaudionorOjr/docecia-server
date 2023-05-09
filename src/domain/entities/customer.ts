@@ -1,7 +1,7 @@
 import { Optional } from 'src/utils/optional';
 import { Entity } from './entity';
 
-interface CustomerProps {
+export interface CustomerProps {
   name: string;
   surname: string;
   email: string;
@@ -36,6 +36,10 @@ export class Customer extends Entity<CustomerProps> {
 
   get passwordHash() {
     return this.props.passwordHash;
+  }
+
+  set passwordHash(passwordHash: string) {
+    this.props.passwordHash = passwordHash;
   }
 
   get phone() {
