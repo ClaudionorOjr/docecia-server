@@ -1,4 +1,4 @@
-import { Address } from '@domain/entities/address';
+import { Address } from '@account/enterprise/entities/address';
 import { Address as RawAddress } from '@prisma/client';
 
 export class PrismaAddressMapper {

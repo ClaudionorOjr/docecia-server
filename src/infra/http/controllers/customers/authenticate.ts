@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { makeAuthenticateUseCase } from '@domain/use-cases/factories/make-authenticate-use-case';
+import { makeAuthenticateUseCase } from '@database/prisma/factories/make-authenticate-use-case';
 import { z } from 'zod';
 
 export async function authenticate(

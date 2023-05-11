@@ -1,7 +1,7 @@
-import { Customer } from '@domain/entities/customer';
-import { CustomersRepository } from '@domain/repositories/customers-repository';
+import { Customer } from '@account/enterprise/entities/customer';
+import { CustomersRepository } from '@account/application/repositories/customers-repository';
 import { PrismaCustomerMapper } from '../mappers/prisma-customer-mapper';
-import { prisma } from '@infra/database/prisma/prisma';
+import { prisma } from '@database/prisma/prisma';
 
 export class PrismaCustomersRepository implements CustomersRepository {
   async create(customer: Customer) {
@@ -40,5 +40,9 @@ export class PrismaCustomersRepository implements CustomersRepository {
     }
 
     return PrismaCustomerMapper.toDomain(customer);
+  }
+
+  save(customer: Customer): Promise<void> {
+    throw new Error('Method not implemented.');
   }
 }

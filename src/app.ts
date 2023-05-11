@@ -4,7 +4,7 @@ import fastifyCookie from '@fastify/cookie';
 import { env } from './env';
 import { ZodError } from 'zod';
 
-import { customerRoutes } from '@infra/http/controllers/customers/routes';
+import { customerRoutes } from '@http/controllers/customers/routes';
 
 export const app = fastify();
 

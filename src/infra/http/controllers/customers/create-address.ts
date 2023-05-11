@@ -1,4 +1,4 @@
-import { MakeCreateAddressUseCase } from '@domain/use-cases/factories/make-create-address-use-case';
+import { MakeCreateAddressUseCase } from '@database/prisma/factories/make-create-address-use-case';
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 

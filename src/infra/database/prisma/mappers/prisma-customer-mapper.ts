@@ -1,4 +1,4 @@
-import { Customer } from '@domain/entities/customer';
+import { Customer } from '@account/enterprise/entities/customer';
 import { Customer as RawCustomer } from '@prisma/client';
 
 export class PrismaCustomerMapper {

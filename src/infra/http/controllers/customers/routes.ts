@@ -1,5 +1,5 @@
 import { FastifyInstance } from 'fastify';
-import { verifyCustomerJWT } from '@infra/http/middlewares/verify-customer-jwt';
+import { verifyCustomerJWT } from '@http/middlewares/verify-customer-jwt';
 
 import { register } from './register';
 import { authenticate } from './authenticate';
