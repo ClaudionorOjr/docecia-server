@@ -15,7 +15,7 @@ describe('Alter Password Use Case', () => {
     sut = new AlterPasswordUseCase(customersRepository);
   });
 
-  it('should be able to alter password customer', async () => {
+  it('should be able to alter customer password', async () => {
     const customer = await makeCustomer(
       {
         passwordHash: await hash('123456', 6),

@@ -11,7 +11,7 @@ export async function makeCustomer(
       name: faker.name.firstName(),
       surname: faker.name.lastName(),
       email: faker.internet.exampleEmail(),
-      passwordHash: await hash(faker.random.alphaNumeric(), 6),
+      passwordHash: await hash(faker.random.alphaNumeric(6), 6),
       phone: faker.phone.number('(##) 9####-####'),
       ...override,
     },

@@ -97,6 +97,18 @@ Adicionar ao `.eslintrc.json`:
   <summary><a>Fastify</a></summary>
 
 ```sh
+# Lib para gerar dados fictícios
+$ npm i @faker-js/faker -D
+```
+
+</details>
+
+---
+
+<details>
+  <summary><a>Fastify</a></summary>
+
+```sh
 $ npm i fastify
 
 # Lib integrada ao fastify para a criação de Json Web Tokens
