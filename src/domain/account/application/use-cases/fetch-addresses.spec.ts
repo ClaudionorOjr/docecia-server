@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { FetchAddressesUseCase } from './fetch-addresses';
 import { InMemoryAddressesRepository } from 'test/repositories/in-memory-adresses-repository';
-import { makeAddress } from 'test/factories/makeAddress';
+import { makeAddress } from 'test/factories/make-address';
 
 let addressesRepository: InMemoryAddressesRepository;
 let sut: FetchAddressesUseCase;

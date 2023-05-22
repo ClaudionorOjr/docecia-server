@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { AlterOwnerPasswordUseCase } from './alter-owner-password';
 import { InMemoryOwnerRepository } from 'test/repositories/in-memory-owner-repository';
-import { makeOwner } from 'test/factories/makeOwner';
+import { makeOwner } from 'test/factories/make-owner';
 import { compare, hash } from 'bcryptjs';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';
 import { InvalidCredentialsError } from './errors/invalid-credentials-error';

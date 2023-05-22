@@ -3,7 +3,7 @@ import { CreateAddressUseCase } from './create-address';
 import { InMemoryCustomersRepository } from 'test/repositories/in-memory-customers-repository';
 import { InMemoryAddressesRepository } from 'test/repositories/in-memory-adresses-repository';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';
-import { makeCustomer } from 'test/factories/makeCustomer';
+import { makeCustomer } from 'test/factories/make-customer';
 
 let customersRepository: InMemoryCustomersRepository;
 let addressesRepository: InMemoryAddressesRepository;

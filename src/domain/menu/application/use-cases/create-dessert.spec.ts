@@ -1,14 +1,14 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { CreateDessertUseCase } from './create-dessert';
-import { InMemoeryDessertsRepository } from 'test/repositories/in-memory-desserts-repository';
+import { InMemoryDessertsRepository } from 'test/repositories/in-memory-desserts-repository';
 import { faker } from '@faker-js/faker';
 
-let dessertsRepository: InMemoeryDessertsRepository;
+let dessertsRepository: InMemoryDessertsRepository;
 let sut: CreateDessertUseCase;
 
 describe('Create Dessert Use Case', () => {
   beforeEach(() => {
-    dessertsRepository = new InMemoeryDessertsRepository();
+    dessertsRepository = new InMemoryDessertsRepository();
     sut = new CreateDessertUseCase(dessertsRepository);
   });
 

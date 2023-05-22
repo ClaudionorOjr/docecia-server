@@ -1,7 +1,7 @@
 import { DessertsRepository } from '@menu/application/repositories/desserts-repository';
 import { Dessert } from '@menu/enterprise/enities/dessert';
 
-export class InMemoeryDessertsRepository implements DessertsRepository {
+export class InMemoryDessertsRepository implements DessertsRepository {
   public desserts: Dessert[] = [];
 
   async create(dessert: Dessert) {

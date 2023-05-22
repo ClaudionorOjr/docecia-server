@@ -1,14 +1,14 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { DeleteDessertUseCase } from './delete-dessert';
-import { InMemoeryDessertsRepository } from 'test/repositories/in-memory-desserts-repository';
-import { makeDessert } from 'test/factories/makeDessert';
+import { InMemoryDessertsRepository } from 'test/repositories/in-memory-desserts-repository';
+import { makeDessert } from 'test/factories/make-dessert';
 import { ResourceNotFoundError } from '@account/application/use-cases/errors/resource-not-found-error';
 
-let dessertsRepository: InMemoeryDessertsRepository;
+let dessertsRepository: InMemoryDessertsRepository;
 let sut: DeleteDessertUseCase;
 describe('Delete Dessert Use Case', () => {
   beforeEach(() => {
-    dessertsRepository = new InMemoeryDessertsRepository();
+    dessertsRepository = new InMemoryDessertsRepository();
     sut = new DeleteDessertUseCase(dessertsRepository);
   });
 

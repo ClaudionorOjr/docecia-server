@@ -1,14 +1,14 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { FetchAvailableDesserts } from './fetch-available-desserts';
-import { InMemoeryDessertsRepository } from 'test/repositories/in-memory-desserts-repository';
-import { makeDessert } from 'test/factories/makeDessert';
+import { InMemoryDessertsRepository } from 'test/repositories/in-memory-desserts-repository';
+import { makeDessert } from 'test/factories/make-dessert';
 
-let dessertsRepository: InMemoeryDessertsRepository;
+let dessertsRepository: InMemoryDessertsRepository;
 let sut: FetchAvailableDesserts;
 
 describe('Fetch Available Desserts Use Case', () => {
   beforeEach(() => {
-    dessertsRepository = new InMemoeryDessertsRepository();
+    dessertsRepository = new InMemoryDessertsRepository();
     sut = new FetchAvailableDesserts(dessertsRepository);
   });
 

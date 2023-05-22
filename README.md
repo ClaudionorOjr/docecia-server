@@ -132,6 +132,9 @@ $ npx prisma init
 
 # Gerar as migrations do banco de dados
 $ npx prisma migrate dev
+
+# Reseta o banco de dados
+$ npx prisma migrate reset
 ```
 
 </details>

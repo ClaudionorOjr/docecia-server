@@ -60,12 +60,14 @@ export class Dessert extends Entity<DessertProps> {
     return this.props.available;
   }
 
-  private set available(available: boolean) {
-    this.props.available = available;
-  }
+  // ! Reavaliar esse trecho do código do toggleAvailability
+  // private set available(available: boolean) {
+  //   this.props.available = available;
+  // }
 
-  public toggleAvailability() {
-    this.available = !this.available;
+  toggleAvailability() {
+    // this.available = !this.available;
+    this.props.available = !this.props.available;
   }
 
   // ! Retornar nesse trecho do código para validar se está funcionando

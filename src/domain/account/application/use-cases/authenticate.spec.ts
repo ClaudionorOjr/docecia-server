@@ -3,7 +3,7 @@ import { AuthenticateUseCase } from './authenticate';
 import { InMemoryCustomersRepository } from 'test/repositories/in-memory-customers-repository';
 import { Customer } from '@account/enterprise/entities/customer';
 import { hash } from 'bcryptjs';
-import { makeCustomer } from 'test/factories/makeCustomer';
+import { makeCustomer } from 'test/factories/make-customer';
 
 let customersRepository: InMemoryCustomersRepository;
 let sut: AuthenticateUseCase;

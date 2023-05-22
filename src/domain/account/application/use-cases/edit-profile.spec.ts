@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { EditProfileUseCase } from './edit-profile';
 import { InMemoryCustomersRepository } from 'test/repositories/in-memory-customers-repository';
-import { makeCustomer } from 'test/factories/makeCustomer';
+import { makeCustomer } from 'test/factories/make-customer';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';
 
 let customersRepository: InMemoryCustomersRepository;

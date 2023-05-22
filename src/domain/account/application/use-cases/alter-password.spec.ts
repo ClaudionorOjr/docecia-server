@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { AlterPasswordUseCase } from './alter-password';
 import { InMemoryCustomersRepository } from 'test/repositories/in-memory-customers-repository';
-import { makeCustomer } from 'test/factories/makeCustomer';
+import { makeCustomer } from 'test/factories/make-customer';
 import { compare, hash } from 'bcryptjs';
 import { InvalidCredentialsError } from './errors/invalid-credentials-error';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';

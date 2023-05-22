@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { EditOwnerUseCase } from './edit-owner';
 import { InMemoryOwnerRepository } from 'test/repositories/in-memory-owner-repository';
-import { makeOwner } from 'test/factories/makeOwner';
+import { makeOwner } from 'test/factories/make-owner';
 
 let ownerRepository: InMemoryOwnerRepository;
 let sut: EditOwnerUseCase;
