@@ -1,5 +1,12 @@
 # Doce&cia
 
+> Back-end para Cardápio Digital Doce&Cia.
+
+O projeto consiste em um cardápio digital, no qual o cliente poderá visualizar os doces que estão disponíveis a pronta entrega, podendo realizar pedidos desses doces. É necessário que o cliente se cadastre na aplicação para que tenha acesso as opções, como cadastro de endereço, adicionar itens a sacola, realizar pedidos, no qual deve indicar forma de apagamento e entrega, e cancelar pedidos.  
+Além desse tipo de usuário, a aplicação contará com um administrador, sendo responsável pelo gerenciamento da aplicação. Podendo este cadastrar, excluir e editar os doces que estarão disponíveis no cardápio. Estará a disposição do administrador um dashboard para que este possa visualizar os pedidos feitos e organizar seu fluxo de trabalho, contando também com um histórico de pedidos, podendo futuramente servir como uma base de dados para análise do andamento do empreendimento.
+
+O intuito desse projeto é automatizar e centralizar em um único ambiente o processo do cliente de realizar pedidos, otimizando o serviço de um empreendedor autônomo, que é responsável pela produção e atendimento ao cliente.
+
 ## ⚙️ Dependências
 
 <details>
@@ -241,6 +248,8 @@ Criação de um [Test Environment no Vitest.](#test-environment-no-vitest)
 </details>
 
 ---
+
+## Anotações
 
 ### Test Environment no Vitest
 
