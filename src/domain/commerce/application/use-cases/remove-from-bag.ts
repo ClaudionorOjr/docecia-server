@@ -1,6 +1,7 @@
 import { CustomersRepository } from '@account/application/repositories/customers-repository';
 import { BagItemsRepository } from '../repositories/bag-items-repository';
 import { ResourceNotFoundError } from '@account/application/use-cases/errors/resource-not-found-error';
+import { NotAllowedError } from '@account/application/use-cases/errors/not-allowed-error';
 
 interface RemoveFromBagUseCaseRequest {
   customerId: string;
@@ -31,7 +32,11 @@ export class RemoveFromBagUseCase {
     }
 
     if (customerId !== item.customerId) {
-      throw new Error('Not allowed.');
+      throw new NotAllowedError();
+    }
+
+    if (item.orderId) {
+      throw new NotAllowedError();
     }
 
     await this.bagItemsRepository.remove(itemId);

@@ -18,7 +18,7 @@ export class InMemoryDessertsRepository implements DessertsRepository {
     return dessert;
   }
 
-  async findAll() {
+  async list() {
     return this.desserts;
   }
 

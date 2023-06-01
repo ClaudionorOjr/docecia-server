@@ -1,15 +1,15 @@
 import { Dessert } from '../../enterprise/enities/dessert';
 import { DessertsRepository } from '../repositories/desserts-repository';
 
-interface FetchAllDessertsResponse {
+interface FetchAllDessertsUseCaseResponse {
   desserts: Dessert[];
 }
 
-export class FetchAllDesserts {
+export class FetchAllDessertsUseCase {
   constructor(private dessertsRepository: DessertsRepository) {}
 
-  async execute(): Promise<FetchAllDessertsResponse> {
-    const desserts = await this.dessertsRepository.findAll();
+  async execute(): Promise<FetchAllDessertsUseCaseResponse> {
+    const desserts = await this.dessertsRepository.list();
 
     return { desserts };
   }

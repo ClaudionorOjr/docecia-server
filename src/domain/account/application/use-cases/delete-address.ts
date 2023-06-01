@@ -1,5 +1,6 @@
 import { AddressesRepository } from '@account/application/repositories/addresses-repository';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';
+import { NotAllowedError } from './errors/not-allowed-error';
 
 interface DeleteAddressUseCaseRequest {
   addressId: string;
@@ -22,7 +23,7 @@ export class DeleteAddressUseCase {
     }
 
     if (customerId !== address.customerId) {
-      throw new Error('Not allowed.');
+      throw new NotAllowedError();
     }
 
     await this.addressesRepository.delete(address.id);

@@ -1,14 +1,19 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { RemoveFromBagUseCase } from './remove-from-bag';
+
 import { InMemoryCustomersRepository } from 'test/repositories/in-memory-customers-repository';
 import { InMemoryBagItemsRepository } from 'test/repositories/in-memory-bag-items-repository';
+
 import { makeItem } from 'test/factories/make-item';
 import { makeCustomer } from 'test/factories/make-customer';
+
 import { ResourceNotFoundError } from '@account/application/use-cases/errors/resource-not-found-error';
+import { NotAllowedError } from '@account/application/use-cases/errors/not-allowed-error';
 
 let customersRepository: InMemoryCustomersRepository;
 let bagItemsRepository: InMemoryBagItemsRepository;
 let sut: RemoveFromBagUseCase;
+
 describe('Remove To Bag Use Case', () => {
   beforeEach(() => {
     customersRepository = new InMemoryCustomersRepository();
@@ -53,6 +58,6 @@ describe('Remove To Bag Use Case', () => {
 
     await expect(() =>
       sut.execute({ customerId: 'customer-1', itemId: 'item-1' }),
-    ).rejects.toBeInstanceOf(Error);
+    ).rejects.toBeInstanceOf(NotAllowedError);
   });
 });

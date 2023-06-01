@@ -1,11 +1,14 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { AddToBagUseCase } from './add-to-bag';
+
 import { InMemoryDessertsRepository } from 'test/repositories/in-memory-desserts-repository';
-import { makeDessert } from 'test/factories/make-dessert';
 import { InMemoryBagItemsRepository } from 'test/repositories/in-memory-bag-items-repository';
-import { ResourceNotFoundError } from '@account/application/use-cases/errors/resource-not-found-error';
 import { InMemoryCustomersRepository } from 'test/repositories/in-memory-customers-repository';
+
+import { makeDessert } from 'test/factories/make-dessert';
 import { makeCustomer } from 'test/factories/make-customer';
+
+import { ResourceNotFoundError } from '@account/application/use-cases/errors/resource-not-found-error';
 
 let customersRepository: InMemoryCustomersRepository;
 let dessertsRepository: InMemoryDessertsRepository;

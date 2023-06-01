@@ -71,13 +71,18 @@ export class Dessert extends Entity<DessertProps> {
   }
 
   // ! Retornar nesse trecho do código para validar se está funcionando
-  // public diminuirAmount() {
-  //   this.props.amount -= 1;
+  subtractAmount(amount: number) {
+    this.props.amount -= amount;
 
-  //   if (this.props.amount === 0) {
-  //     this.props.available = false;
-  //   }
-  // }
+    if (this.props.amount <= 0) {
+      this.props.available = false;
+    }
+  }
+
+  // ! Retornar nesse trecho do código para validar se está funcionando
+  refundAmount(amount: number) {
+    this.props.amount += amount;
+  }
 
   get createdAt() {
     return this.props.createdAt;

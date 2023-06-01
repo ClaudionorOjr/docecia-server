@@ -1,6 +1,7 @@
 import { CustomersRepository } from '@account/application/repositories/customers-repository';
 import { ResourceNotFoundError } from '@account/application/use-cases/errors/resource-not-found-error';
 import { BagItemsRepository } from '../repositories/bag-items-repository';
+import { NotAllowedError } from '@account/application/use-cases/errors/not-allowed-error';
 
 interface DecrementBagItemUseCaseRequest {
   customerId: string;
@@ -31,7 +32,7 @@ export class DecrementBagItemUseCase {
     }
 
     if (customerId !== item.customerId) {
-      throw new Error('Not allowed.');
+      throw new NotAllowedError();
     }
 
     if (item.quantity > 1) {

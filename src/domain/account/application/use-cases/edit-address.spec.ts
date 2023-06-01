@@ -3,6 +3,7 @@ import { EditAddressUseCase } from './edit-address';
 import { InMemoryAddressesRepository } from 'test/repositories/in-memory-adresses-repository';
 import { makeAddress } from 'test/factories/make-address';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';
+import { NotAllowedError } from './errors/not-allowed-error';
 
 let addressesRepository: InMemoryAddressesRepository;
 let sut: EditAddressUseCase;
@@ -62,6 +63,6 @@ describe('Edit Address Use Case', () => {
         addressNumber: 123,
         addressComplement: '',
       }),
-    ).rejects.toBeInstanceOf(Error);
+    ).rejects.toBeInstanceOf(NotAllowedError);
   });
 });

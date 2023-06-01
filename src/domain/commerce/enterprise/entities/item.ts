@@ -1,4 +1,5 @@
 import { Entity } from 'src/core/entity';
+import { Optional } from 'src/utils/optional';
 
 export interface ItemProps {
   productId: string;
@@ -7,7 +8,9 @@ export interface ItemProps {
   taste: string;
   quantity: number;
   unitPriceInCents: number;
-  // orderId?: string;
+  // ! POSSIVELMENTE SERÁ NECESSÁRIO RETIRAR ESSE ATRIBUTO 'available'
+  available: boolean;
+  orderId?: string;
 }
 
 export class Item extends Entity<ItemProps> {
@@ -35,6 +38,26 @@ export class Item extends Entity<ItemProps> {
     return this.props.unitPriceInCents;
   }
 
+  get available() {
+    return this.props.available;
+  }
+
+  set available(available: boolean) {
+    this.props.available = available;
+  }
+
+  get orderId() {
+    return this.props.orderId;
+  }
+
+  set orderId(orderId: string | undefined) {
+    this.props.orderId = orderId;
+  }
+
+  get subtotal() {
+    return this.props.quantity * this.props.unitPriceInCents;
+  }
+
   quantityDecrement() {
     --this.props.quantity;
   }
@@ -47,8 +70,8 @@ export class Item extends Entity<ItemProps> {
     }
   }
 
-  static create(props: ItemProps, id?: string) {
-    const item = new Item(props, id);
+  static create(props: Optional<ItemProps, 'available'>, id?: string) {
+    const item = new Item({ ...props, available: props.available ?? true }, id);
 
     return item;
   }

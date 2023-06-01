@@ -43,7 +43,7 @@ export class AddToBagUseCase {
     }
 
     const itemAlreadyExistsInBag =
-      await this.bagItemsRepository.findByProductAndCustomerId(
+      await this.bagItemsRepository.findOpenItemByProductAndCustomerId(
         dessertId,
         customerId,
       );

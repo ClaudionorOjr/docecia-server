@@ -2,6 +2,7 @@ import { CustomersRepository } from '@account/application/repositories/customers
 import { BagItemsRepository } from '../repositories/bag-items-repository';
 import { ResourceNotFoundError } from '@account/application/use-cases/errors/resource-not-found-error';
 import { DessertsRepository } from '@menu/application/repositories/desserts-repository';
+import { NotAllowedError } from '@account/application/use-cases/errors/not-allowed-error';
 
 interface IncrementBagItemUseCaseRequest {
   customerId: string;
@@ -32,7 +33,7 @@ export class IncrementBagItemUseCase {
     }
 
     if (customerId !== item.customerId) {
-      throw new Error('Not allowed.');
+      throw new NotAllowedError();
     }
 
     const dessert = await this.dessertsRepository.findById(item.productId);
@@ -41,7 +42,7 @@ export class IncrementBagItemUseCase {
       throw new ResourceNotFoundError();
     }
 
-    if (item.quantity === dessert.amount) {
+    if (item.quantity >= dessert.amount) {
       throw new Error('Exceeded quantity.');
     }
 

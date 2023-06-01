@@ -1,5 +1,6 @@
 import { AddressesRepository } from '@account/application/repositories/addresses-repository';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';
+import { NotAllowedError } from './errors/not-allowed-error';
 
 interface EditAddressUseCaseRequest {
   addressId: string;
@@ -30,7 +31,7 @@ export class EditAddressUseCase {
     }
 
     if (customerId !== address.customerId) {
-      throw new Error('Not allowed.');
+      throw new NotAllowedError();
     }
 
     address.street = street ?? address.street;

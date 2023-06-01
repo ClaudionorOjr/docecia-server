@@ -3,6 +3,7 @@ import { DeleteAddressUseCase } from './delete-address';
 import { InMemoryAddressesRepository } from 'test/repositories/in-memory-adresses-repository';
 import { Address } from '@account/enterprise/entities/address';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';
+import { NotAllowedError } from './errors/not-allowed-error';
 
 let addressesRepository: InMemoryAddressesRepository;
 let sut: DeleteAddressUseCase;
@@ -57,6 +58,6 @@ describe('Delete Address Use Case', () => {
 
     await expect(() =>
       sut.execute({ addressId: address.id, customerId: 'customer-02' }),
-    ).rejects.toBeInstanceOf(Error);
+    ).rejects.toBeInstanceOf(NotAllowedError);
   });
 });

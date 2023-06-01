@@ -19,9 +19,21 @@ export class InMemoryBagItemsRepository implements BagItemsRepository {
     return item;
   }
 
-  async findByProductAndCustomerId(productId: string, customerId: string) {
+  async findManyByOrderId(orderId: string) {
+    const items = this.bag.filter((item) => item.orderId === orderId);
+
+    return items;
+  }
+
+  async findOpenItemByProductAndCustomerId(
+    productId: string,
+    customerId: string,
+  ) {
     const product = this.bag.find(
-      (item) => item.productId === productId && item.customerId === customerId,
+      (item) =>
+        item.productId === productId &&
+        item.customerId === customerId &&
+        !item.orderId,
     );
 
     if (!product) {
@@ -29,6 +41,14 @@ export class InMemoryBagItemsRepository implements BagItemsRepository {
     }
 
     return product;
+  }
+
+  async findManyOpenItemsByCustomerId(customerId: string) {
+    const items = this.bag.filter(
+      (item) => item.customerId === customerId && !item.orderId,
+    );
+
+    return items;
   }
 
   async remove(id: string) {

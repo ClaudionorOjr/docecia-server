@@ -1,10 +1,14 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { DecrementBagItemUseCase } from './decrement-bag-item';
+
 import { InMemoryBagItemsRepository } from 'test/repositories/in-memory-bag-items-repository';
-import { makeItem } from 'test/factories/make-item';
 import { InMemoryCustomersRepository } from 'test/repositories/in-memory-customers-repository';
+
 import { makeCustomer } from 'test/factories/make-customer';
+import { makeItem } from 'test/factories/make-item';
+
 import { ResourceNotFoundError } from '@account/application/use-cases/errors/resource-not-found-error';
+import { NotAllowedError } from '@account/application/use-cases/errors/not-allowed-error';
 
 let bagItemsRepository: InMemoryBagItemsRepository;
 let customersRepository: InMemoryCustomersRepository;
@@ -112,6 +116,6 @@ describe('Decrement Bag Item Use Case', () => {
         customerId: 'customer-1',
         itemId: 'item-1',
       }),
-    ).rejects.toBeInstanceOf(Error);
+    ).rejects.toBeInstanceOf(NotAllowedError);
   });
 });
