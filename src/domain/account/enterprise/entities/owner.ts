@@ -6,7 +6,7 @@ export interface OwnerProps {
   email: string;
   passwordHash: string;
   createdAt: Date;
-  updatedAt?: Date;
+  updatedAt?: Date | null;
 }
 
 export class Owner extends Entity<OwnerProps> {

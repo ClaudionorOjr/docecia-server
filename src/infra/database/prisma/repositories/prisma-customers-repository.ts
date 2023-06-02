@@ -29,20 +29,27 @@ export class PrismaCustomersRepository implements CustomersRepository {
   }
 
   async findById(id: string) {
-    const customer = await prisma.customer.findUnique({
+    const rawCustomer = await prisma.customer.findUnique({
       where: {
         id,
       },
     });
 
-    if (!customer) {
+    if (!rawCustomer) {
       return null;
     }
 
-    return PrismaCustomerMapper.toDomain(customer);
+    return PrismaCustomerMapper.toDomain(rawCustomer);
   }
 
-  save(customer: Customer): Promise<void> {
-    throw new Error('Method not implemented.');
+  async save(customer: Customer) {
+    const rawCustomer = PrismaCustomerMapper.toPrisma(customer);
+
+    await prisma.customer.update({
+      where: {
+        id: rawCustomer.id,
+      },
+      data: rawCustomer,
+    });
   }
 }
